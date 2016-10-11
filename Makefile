@@ -10,7 +10,7 @@ XCODE_BUILD = xcrun xcodebuild -workspace $(SCHEME).xcworkspace -scheme $(SCHEME
 
 default: test
 
-test: pod_install build retest
+test: pod_install retest
 
 pod_install:
 	cd $(WORKING_DIR) && \
@@ -24,7 +24,7 @@ retest:
 	cd $(WORKING_DIR) && \
 		$(XCODE_BUILD) \
 			-destination '${BUILD_DESTINATION}' \
-			test
+			build test | xcpretty
 
 clean:
 	cd $(WORKING_DIR) && \
